@@ -1,0 +1,24 @@
+<h1 class="title">{{title}}</h1>
+
+<table>
+    <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let element of residences">
+        <td><img [src]="element.image" width="50" height="50"></td>
+        <td>{{element.id}}</td>
+        <td>{{element.name}}</td>
+        <td>{{element.status}}</td>
+        <td><button (click)="showAddress(element)">Show Address</button></td>
+    </tr>
+</table>
+<div *ngIf="hide && selectedResidence.address != 'inconnu'">
+{{selectedResidence.address}}
+</div>
+
+<div *ngIf="hide && selectedResidence.address == 'inconnu'">
+    <p> Addresse inconnu</p>
+</div>
