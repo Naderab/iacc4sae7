@@ -1,24 +1,63 @@
-<h1 class="title">{{title}}</h1>
-
-<table>
-    <tr>
-        <th></th>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Status</th>
-    </tr>
-    <tr *ngFor="let element of residences">
-        <td><img [src]="element.image" width="50" height="50"></td>
-        <td>{{element.id}}</td>
-        <td>{{element.name}}</td>
-        <td>{{element.status}}</td>
-        <td><button (click)="showAddress(element)">Show Address</button></td>
-    </tr>
-</table>
-<div *ngIf="hide && selectedResidence.address != 'inconnu'">
-{{selectedResidence.address}}
-</div>
-
-<div *ngIf="hide && selectedResidence.address == 'inconnu'">
-    <p> Addresse inconnu</p>
+<div class="container">
+  <div class="row">
+    <h1 class="title">{{ title }}</h1>
+  </div>
+  <div class="row">
+    <input
+      class="form-control"
+      placeholder="Search by address"
+      type="text"
+      name="search"
+      [(ngModel)]="searchText"
+    />
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th colspan="2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of filterResidence()">
+          <td><img [src]="element.image" width="50" height="50" /></td>
+          <td>{{ element.id }}</td>
+          <td>{{ element.name }}</td>
+          <td>{{ element.status }}</td>
+          <td>
+            <button
+              class="btn btn-outline-primary"
+              (click)="showAddress(element)"
+            >
+              Show Address
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-primary"
+              (click)="addToFavoris(element)"
+            >
+              {{ isFavoris(element) ? "👎 Unlike" : "👍 Like" }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="alert alert-success"
+    *ngIf="hide && selectedResidence.address != 'inconnu'"
+  >
+    {{ selectedResidence.address }}
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="hide && selectedResidence.address == 'inconnu'"
+  >
+    <p>Addresse inconnu</p>
+  </div>
 </div>
