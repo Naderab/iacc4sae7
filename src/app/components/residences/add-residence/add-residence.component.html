@@ -1,1 +1,41 @@
-<p>add-residence works!</p>
+<div class="container">
+    <div class="row">
+        <h3>Add new residence</h3>
+    </div>
+    <div class="row">
+        <form [formGroup]="residence">
+            <div class="mb-3">
+                <label >Name :</label>
+                <input class="form-control" formControlName="name">
+                <div class="alert alert-danger" *ngIf="residence.get('name')!.invalid && 
+                (residence.get('name')!.touched || 
+                residence.get('name')!.dirty) ">
+                    <div *ngIf="residence.get('name')!.errors!['required']">Name is required</div>
+                    <div *ngIf="residence.get('name')!.errors!['minlength']">Name must have at least 3 characters</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3" formGroupName="address">
+                <span class="input-group-text">Adresse</span>
+                <input placeholder="Street ..." class="form-control form-control-sm" formControlName="street">
+                <input placeholder="City ..." class="form-control form-control-sm" formControlName="city">
+            </div>
+
+            <div class="mb-3">
+                <label>Image : </label>
+                <input class="form-control" formControlName="image">
+            </div>
+            <div class="mb-3">
+                <label>Status :</label>
+                <select class="form-select" formControlName="status">
+                    <option value="Disponible">Disponible</option>
+                    <option value="Vendu">Vendu</option>
+                    <option value="En Construction">En Construction</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-outline-success" type="submit" value="Submit" (click)="add()">
+            </div>
+        </form>
+    </div>
+</div>
