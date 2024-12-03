@@ -44,6 +44,12 @@
               {{ isFavoris(element) ? "👎 Unlike" : "👍 Like" }}
             </button>
           </td>
+          <td>
+            <button class="btn btn-outline-primary" 
+            [routerLink]="['/details/',element.id]">
+              Details
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -1,1 +1,7 @@
-<p>residence-details works!</p>
+<p>{{selectedResidence.name}}</p>
+<button (click)="previousResidence()"> <- Previous</button>
+<button (click)="nextResidence()"> Next-> </button>
+
+<button routerLink="/addResidence">Add new Residence</button>
+<button [routerLink]="['/updateResidence/',id]">Update Residence</button>
+
