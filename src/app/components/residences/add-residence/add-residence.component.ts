@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ResidenceService } from 'src/app/services/residence.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ResidenceService } from 'src/app/services/residence.service';
 })
 export class AddResidenceComponent implements OnInit {
 
-  constructor(private r:ResidenceService){}
+  constructor(private r:ResidenceService,private router:Router){}
   //<form></form>
   residence!: FormGroup;
 
@@ -31,6 +32,7 @@ export class AddResidenceComponent implements OnInit {
     console.log(this.residence.get('name')!.value)
     console.log(this.residence.value)
     this.r.addResidence(this.residence.value);
+    this.router.navigate(['/residences'])
   }
 
 }
